@@ -1,12 +1,9 @@
 {
   "name": "@lcf.vs/dom-engine",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A composable DOM based template engine",
   "type": "module",
   "main": "./lib/engine.js",
-  "engines": {
-    "node": ">=14.0"
-  },
   "scripts": {
     "test": "node ./test/test.js"
   },
