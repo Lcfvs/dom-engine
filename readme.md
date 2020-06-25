@@ -84,6 +84,19 @@ const p = {
 }
 ```
 
+```js
+// object representing <p>hello <strong><span>user</span>-<span>name</span></strong></p>
+const p = {
+  ...template,
+  salutations: 'hello',
+  name: [
+    fragment(`<span>user</span>`),
+    fragment(`-`),
+    fragment(`<span>name</span>`)
+  ]
+}
+```
+
 ## Serialize a template
 
 ```js
