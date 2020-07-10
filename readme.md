@@ -13,9 +13,9 @@
 ### Create a fragment template
 
 ```js
-import { fragment } from '@lcf.vs/dom-engine'
+import { template } from '@lcf.vs/dom-engine/backend.js'
 
-const template = fragment(`
+const pTemplate = template(`
 <p>{salutations} {name}</p>
 `, {
   salutations: null, // required
@@ -28,27 +28,27 @@ const template = fragment(`
 ```js
 // object representing <p>hello user-name</p>
 const p = {
-  ...template,
+  ...pTemplate,
   salutations: 'hello',
   name: 'user-name'
 }
 
 // object representing <p>hello</p>
 const p = {
-  ...template,
+  ...pTemplate,
   salutations: 'hello'
 }
 
 // Error: missing {salutations} (on serialization)
 const p = {
-  ...template
+  ...pTemplate
 }
 ```
 
 ### Use templates as value
 
 ```js
-const taggedName = fragment(`
+const taggedName = template(`
 <strong>{name}</strong>
 `, {
   name: null
@@ -56,7 +56,7 @@ const taggedName = fragment(`
 
 // object representing <p>hello <string>user-name</strong></p>
 const p = {
-  ...template,
+  ...pTemplate,
   salutations: 'hello',
   name: {
     ...taggedName,
@@ -66,7 +66,7 @@ const p = {
 
 // object representing <p>hello <strong>user-name</strong></p>
 const p = {
-  ...template,
+  ...pTemplate,
   salutations: 'hello',
   name: {
     ...taggedName,
@@ -78,21 +78,21 @@ const p = {
 ```js
 // object representing <p>hello <strong><span>user-name</span></strong></p>
 const p = {
-  ...template,
+  ...pTemplate,
   salutations: 'hello',
-  name: fragment(`<span>user-name</span>`)
+  name: template(`<span>user-name</span>`)
 }
 ```
 
 ```js
 // object representing <p>hello <strong><span>user</span>-<span>name</span></strong></p>
 const p = {
-  ...template,
+  ...pTemplate,
   salutations: 'hello',
   name: [
-    fragment(`<span>user</span>`),
-    fragment(`-`),
-    fragment(`<span>name</span>`)
+    template(`<span>user</span>`),
+    template(`-`),
+    template(`<span>name</span>`)
   ]
 }
 ```
@@ -100,28 +100,38 @@ const p = {
 ## Serialize a template
 
 ```js
-import { fragment } from '@lcf.vs/dom-engine'
+import { serialize, template } from '@lcf.vs/dom-engine/lib/backend.js'
 
-const template = fragment(`<span>user-name</span>`)
-const html = serialize(template)
+const p = template(`<p>user-name</p>`)
+const html = serialize(p)
 ```
 
-## API
+## APIs
+
+### Back-End
 
 ```js
-import { fragment, serialize } from '@lcf.vs/dom-engine'
+import { template } from '@lcf.vs/dom-engine/lib/backend.js'
 
-const template = fragment(source[, fields])
-```
-
-```js
-import { document } from '@lcf.vs/dom-engine'
-
-const template = document(source[, fields])
+const template = template(source, { ...fields } = {}, type = 'text/html')
 ```
 
 ```js
-import { serialize } from '@lcf.vs/dom-engine'
+import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
+
+const rendered = serialize(template)
+```
+
+### Front-End
+
+```js
+import { template } from '@lcf.vs/dom-engine/lib/frontend.js'
+
+const template = template(source, { ...fields } = {}, type = 'text/html')
+```
+
+```js
+import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
 
 const rendered = serialize(template)
 ```

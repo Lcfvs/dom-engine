@@ -1,6 +1,6 @@
-import { fragment } from '../../lib/engine.js'
+import { template } from '../../lib/backend.js'
 
-export default fragment(`
+export default template(`
 <ol>
   {items}
 </ol>

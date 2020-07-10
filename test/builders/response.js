@@ -1,6 +1,6 @@
 import page from './page.js'
 import partial from './partial.js'
-import { serialize } from '../../lib/engine.js'
+import { serialize } from '../../lib/backend.js'
 
 export default function response ({
   lang = 'en',
@@ -8,7 +8,7 @@ export default function response ({
   xhr = false
 }) {
   return serialize({
-    ...xhr && partial || page,
+    ...(xhr && partial) || page,
     ...view,
     lang
   })

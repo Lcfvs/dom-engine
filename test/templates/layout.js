@@ -1,6 +1,6 @@
-import { document } from '../../lib/engine.js'
+import { template } from '../../lib/backend.js'
 
-export default document(`<!DOCTYPE html>
+export default template(`<!DOCTYPE html>
 <html lang="{lang}">
   <head>
     <meta charset="UTF-8">
