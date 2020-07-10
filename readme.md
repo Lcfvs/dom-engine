@@ -1,6 +1,6 @@
 # @lcf.vs/dom-engine
 
-**[ALPHA]** A composable DOM based template engine
+A composable DOM based template engine
 
 
 ## Install
