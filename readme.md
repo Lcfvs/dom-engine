@@ -113,7 +113,7 @@ const html = serialize(p)
 ```js
 import { template } from '@lcf.vs/dom-engine/lib/backend.js'
 
-const template = template(source, { ...fields } = {}, type = 'text/html')
+const template = template(source, { ...fields } = {})
 ```
 
 ```js
@@ -127,7 +127,7 @@ const rendered = serialize(template)
 ```js
 import { template } from '@lcf.vs/dom-engine/lib/frontend.js'
 
-const template = template(source, { ...fields } = {}, type = 'text/html')
+const template = template(source, { ...fields } = {})
 ```
 
 ```js
