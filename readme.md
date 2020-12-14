@@ -10,16 +10,27 @@ A composable DOM based template engine
 
 ## Usage
 
+### Markers
+
+There is 2 type of markers:
+
+* **Required**: `{name}`
+  * The value can't be nullish
+* **Optional**: `{?name}`
+  * If a nullish value is provided for an attribute, that attribute is removed
+
+
 ### Create a fragment template
 
 ```js
 import { template } from '@lcf.vs/dom-engine/backend.js'
 
 const pTemplate = template(`
-<p>{salutations} {name}</p>
+<p class="{?classes}">{salutations} {name}</p>
 `, {
-  salutations: null, // required
-  name: '' //optional
+  classes: null,
+  salutations: null,
+  name: null
 })
 ```
 
