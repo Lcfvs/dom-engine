@@ -108,6 +108,20 @@ const p = {
 }
 ```
 
+### Use object properties
+```js
+// object representing <p>hello <strong>user</strong></p>
+const pTemplate = template(`
+<p>{salutations} <strong>{user.name}</strong></p>
+`, {
+  salutations: 'hello',
+  user: {
+    name: 'user'
+  }
+})
+```
+
+
 ## Serialize a template
 
 ```js
