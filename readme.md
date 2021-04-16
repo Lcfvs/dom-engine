@@ -161,6 +161,49 @@ import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
 const rendered = serialize(template)
 ```
 
+### ServiceWorker
+
+From the version `2.2.0`, the engine also supports the rendering of some templates stored into a `ServiceWorker`.
+
+To use it, you need to add the following components.
+
+#### Into the `window` script
+
+```js
+import '@lcf.vs/dom-engine/worker-client.js'
+```
+
+#### Into the `ServiceWorker` script
+
+```js
+import { serialize, template } from '@lcf.vs/dom-engine/worker.js'
+
+const text = 'This page is built by sw-template'
+
+const view = template(`<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{text}</title>
+  <script src="/main.js" type="module"></script>
+</head>
+<body>
+  <main>
+    <h1>{text}</h1>
+    <a href="/">back to home</a>
+  </main>
+</body>
+</html>`)
+
+const html = await serialize({
+  ...view,
+  text
+})
+```
+
+Just note that: if the browser doesn't support the ES6 modules, into the `ServiceWorker`, you should need to bundle your code.
+
+[A very basic demo](https://glitch.com/edit/#!/dom-engine-sw?path=sw-routes.js%3A25%3A6)
 
 ## License
 
