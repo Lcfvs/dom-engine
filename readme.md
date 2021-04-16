@@ -170,13 +170,13 @@ To use it, you need to add the following components.
 #### Into the `window` script
 
 ```js
-import '@lcf.vs/dom-engine/worker-client.js'
+import '@lcf.vs/dom-engine/lib/worker-client.js'
 ```
 
 #### Into the `ServiceWorker` script
 
 ```js
-import { serialize, template } from '@lcf.vs/dom-engine/worker.js'
+import { serialize, template } from '@lcf.vs/dom-engine/lib/worker.js'
 
 const text = 'This page is built by sw-template'
 
