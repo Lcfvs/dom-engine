@@ -10,6 +10,14 @@ A composable DOM based template engine
 
 ## Usage
 
+### Security
+
+This library can require the following header:
+
+`Content-Security-Policy: require-trusted-types-for 'script'; trusted-types dom-engine`
+
+Since the templates filling is intended to avoid XSS injections, by design, you need to be sure about your templates.
+
 ### Markers
 
 There is 2 type of markers:
