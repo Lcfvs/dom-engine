@@ -1,6 +1,6 @@
 {
   "name": "@lcf.vs/dom-engine",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "A composable DOM based template engine",
   "type": "module",
   "main": "lib/engine.js",
@@ -9,7 +9,7 @@
   },
   "author": "lcf.vs <michael.rouges@gmail.com>",
   "dependencies": {
-    "jsdom": "^16.3.0"
+    "jsdom": "^16.6.0"
   },
   "devDependencies": {
     "eslint": "^7.25.0"
