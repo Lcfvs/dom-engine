@@ -10,14 +10,6 @@ A composable DOM based template engine
 
 ## Usage
 
-### Security
-
-This library can require the following header/meta:
-
-`Content-Security-Policy: require-trusted-types-for 'script'; trusted-types dom-engine`
-
-Since the templates filling is intended to avoid XSS injections, by design, you need to be sure about your templates.
-
 
 ### Markers
 
@@ -32,15 +24,27 @@ There is 2 type of markers:
 ### Create a fragment template
 
 ```js
-import { template } from '@lcf.vs/dom-engine/backend.js'
+import { template } from '@lcf.vs/dom-engine/template.js'
 
-const pTemplate = template(`
-<p class="{?classes}">{salutations} {name}</p>
-`, {
+const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
   classes: null,
   salutations: null,
   name: null
 })
+```
+
+
+### Create a fragment template, using the `source` symbol
+
+```js
+import { template, source } from '@lcf.vs/dom-engine/template.js'
+
+const pTemplate = {
+  [source]: '<p class="{?classes}">{salutations} {?name}</p>',
+  classes: null,
+  salutations: null,
+  name: null
+}
 ```
 
 ### Create a value filled node
@@ -68,11 +72,10 @@ const p = {
 ### Use templates as value
 
 ```js
-const taggedName = template(`
-<strong>{name}</strong>
-`, {
+const taggedName = {
+  [source]: '<strong>{name}</strong>',
   name: null
-})
+}
 
 // object representing <p>hello <string>user-name</strong></p>
 const p = {
@@ -120,59 +123,57 @@ const p = {
 ### Use object properties
 ```js
 // object representing <p>hello <strong>user</strong></p>
-const pTemplate = template(`
-<p>{salutations} <strong>{user.name}</strong></p>
-`, {
+const pTemplate = {
+  [source]: '<p>{salutations} <strong>{user.name}</strong></p>',
   salutations: 'hello',
   user: {
     name: 'user'
   }
-})
+}
 ```
 
 
 ## Serialize a template
 
 ```js
-import { serialize, template } from '@lcf.vs/dom-engine/lib/backend.js'
+import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
 
 const p = template(`<p>user-name</p>`)
-const html = serialize(p)
+const html = await serialize(p)
 ```
 
 ## APIs
 
-### Back-End
-
 ```js
-import { template } from '@lcf.vs/dom-engine/lib/backend.js'
+import { template, source } from '@lcf.vs/dom-engine/lib/template.js'
 
-const template = template(source, { ...fields } = {})
+const template = template(html, { ...fields } = {})
+
+// or 
+
+const template = {
+  [source]: html,
+  ...fields
+}
 ```
 
 ```js
 import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
 
-const rendered = serialize(template)
+const rendered = await serialize(template)
 ```
 
 ### Front-End
 
 ```js
-import { template } from '@lcf.vs/dom-engine/lib/frontend.js'
-
-const template = template(source, { ...fields } = {})
-```
-
-```js
 import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
 
-const rendered = serialize(template)
+const rendered = await serialize(template)
 ```
 
 ### ServiceWorker
 
-From the version `2.2.0`, the engine also supports the rendering of some templates stored into a `ServiceWorker`.
+The engine also supports the rendering of some templates stored into a `ServiceWorker`.
 
 To use it, you need to add the following components.
 
@@ -185,11 +186,13 @@ import '@lcf.vs/dom-engine/lib/worker-client.js'
 #### Into the `ServiceWorker` script
 
 ```js
-import { serialize, template } from '@lcf.vs/dom-engine/lib/worker.js'
+import { source } from '@lcf.vs/dom-engine/lib/template.js'
+import { serialize } from '@lcf.vs/dom-engine/lib/worker.js'
 
 const text = 'This page is built by sw-template'
 
-const view = template(`<!doctype html>
+const view = {
+  [source]: `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -202,7 +205,8 @@ const view = template(`<!doctype html>
     <a href="/">back to home</a>
   </main>
 </body>
-</html>`)
+</html>`
+}
 
 const html = await serialize({
   ...view,
@@ -213,6 +217,24 @@ const html = await serialize({
 Just note that: if the browser doesn't support the ES6 modules, into the `ServiceWorker`, you should need to bundle your code.
 
 [A very basic demo](https://glitch.com/edit/#!/dom-engine-sw?path=sw-routes.js%3A25%3A6)
+
+
+### Security
+
+To improve your client-side security, you can add the following header on your requests (or via a `<meta>`)
+
+`Content-Security-Policy: default-src 'none'; connect-src 'self'; script-src 'self'; style-src 'self'; require-trusted-types-for 'script'; trusted-types dom-engine`
+
+Since the templates filling is intended to avoid XSS injections, by design, you need to be sure about your templates.
+
+Of course, it's just a **minimal** one, you can adapt it on your needs.
+
+
+### Changelog
+
+* @`4.0.0`: Context-less `template()` + template `source` symbol support
+* @`2.2.0`: `ServiceWorker` support
+
 
 ## License
 
