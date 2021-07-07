@@ -160,15 +160,26 @@ const template = {
 ```js
 import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
 
-const rendered = await serialize(template)
+const htmlString = await serialize(template)
 ```
+Or
+```js
+import { render } from '@lcf.vs/dom-engine/lib/backend.js'
+
+const htmlNode = await render(template)
 
 ### Front-End
 
 ```js
 import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
 
-const rendered = await serialize(template)
+const htmlString = await serialize(template)
+```
+Or
+```js
+import { render } from '@lcf.vs/dom-engine/lib/frontend.js'
+
+const htmlNode = await render(template)
 ```
 
 ### ServiceWorker
