@@ -24,7 +24,7 @@ There is 2 type of markers:
 ### Create a fragment template
 
 ```js
-import { template } from '@lcf.vs/dom-engine/template.js'
+import { template } from '@lcf.vs/dom-engine/lib/template.js'
 
 const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
   classes: null,
@@ -37,7 +37,7 @@ const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
 ### Create a fragment template, using the `source` symbol
 
 ```js
-import { template, source } from '@lcf.vs/dom-engine/template.js'
+import { template, source } from '@lcf.vs/dom-engine/lib/template.js'
 
 const pTemplate = {
   [source]: '<p class="{?classes}">{salutations} {?name}</p>',
@@ -157,6 +157,8 @@ const template = {
 }
 ```
 
+### Back-End
+
 ```js
 import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
 
@@ -167,6 +169,7 @@ Or
 import { render } from '@lcf.vs/dom-engine/lib/backend.js'
 
 const htmlNode = await render(template)
+```
 
 ### Front-End
 
