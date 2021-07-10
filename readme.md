@@ -24,7 +24,7 @@ There is 2 type of markers:
 ### Create a fragment template
 
 ```js
-import { template } from '@lcf.vs/dom-engine/lib/template.js'
+import { template } from '@lcf.vs/dom-engine/lib/frontend.js'
 
 const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
   classes: null,
@@ -37,7 +37,7 @@ const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
 ### Create a fragment template, using the `source` symbol
 
 ```js
-import { template, source } from '@lcf.vs/dom-engine/lib/template.js'
+import { source } from '@lcf.vs/dom-engine/lib/frontend.js'
 
 const pTemplate = {
   [source]: '<p class="{?classes}">{salutations} {?name}</p>',
@@ -136,7 +136,7 @@ const pTemplate = {
 ## Serialize a template
 
 ```js
-import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
+import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
 
 const p = template(`<p>user-name</p>`)
 const html = await serialize(p)
@@ -145,7 +145,7 @@ const html = await serialize(p)
 ## APIs
 
 ```js
-import { template, source } from '@lcf.vs/dom-engine/lib/template.js'
+import { template, source } from '@lcf.vs/dom-engine/lib/frontend.js'
 
 const template = template(html, { ...fields } = {})
 
@@ -200,8 +200,7 @@ import '@lcf.vs/dom-engine/lib/worker-client.js'
 #### Into the `ServiceWorker` script
 
 ```js
-import { source } from '@lcf.vs/dom-engine/lib/template.js'
-import { serialize } from '@lcf.vs/dom-engine/lib/worker.js'
+import { serialize, source } from '@lcf.vs/dom-engine/lib/worker.js'
 
 const text = 'This page is built by sw-template'
 
@@ -242,12 +241,6 @@ To improve your client-side security, you can add the following header on your r
 Since the templates filling is intended to avoid XSS injections, by design, you need to be sure about your templates.
 
 Of course, it's just a **minimal** one, you can adapt it on your needs.
-
-
-### Changelog
-
-* @`4.0.0`: Context-less `template()` + template `source` symbol support
-* @`2.2.0`: `ServiceWorker` support
 
 
 ## License
