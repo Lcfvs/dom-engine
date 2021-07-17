@@ -3,6 +3,10 @@
 A composable DOM based template engine
 
 
+# Note
+
+For Deno usage, please read [`Deno.md`](./Deno.md).
+
 ## Install
 
 `npm i @lcf.vs/dom-engine`
