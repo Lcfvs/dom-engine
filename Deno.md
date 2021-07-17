@@ -25,3 +25,6 @@ import { types } from 'https://raw.githubusercontent.com/Lcfvs/dom-engine/master
 
 ## Documentation
 The API is very similar to how the original works. Read more at [here](./readme.md).
+
+## Note
+It's not 100% safe. Using TS in this case is mostly to separate Deno and other runtime
