@@ -168,7 +168,7 @@ Or
 ```js
 import { render } from '@lcf.vs/dom-engine/lib/backend.js'
 
-const htmlNode = await render(template)
+const htmlNode = render(template)
 ```
 
 ### Front-End
@@ -182,7 +182,7 @@ Or
 ```js
 import { render } from '@lcf.vs/dom-engine/lib/frontend.js'
 
-const htmlNode = await render(template)
+const htmlNode = render(template)
 ```
 
 ### ServiceWorker
