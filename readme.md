@@ -147,17 +147,26 @@ const html = await serialize(p)
 ```js
 import { template, source } from '@lcf.vs/dom-engine/lib/frontend.js'
 
-const template = template(html, { ...fields } = {})
+const tpl = template(html, { ...fields } = {})
 
 // or 
 
-const template = {
+const tpl = {
   [source]: html,
   ...fields
 }
 ```
 
 ### Back-End
+
+```js
+import { load } from '@lcf.vs/dom-engine/lib/backend.js'
+
+// loads a file with the same name than the current module,
+// but with a .html extension instead of the current one
+const tpl = await load(import.meta, { ...options } = {}, { ...data } = {})
+```
+Where the options are the **async** `readFile()` ones
 
 ```js
 import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
@@ -172,6 +181,15 @@ const htmlNode = render(template)
 ```
 
 ### Front-End
+
+```js
+import { load } from '@lcf.vs/dom-engine/lib/frontend.js'
+
+// loads a file with the same name than the current module,
+// but with a .html extension instead of the current one
+const tpl = await load(import.meta, { ...options } = {}, { ...data } = {})
+```
+Where the options are the `fetch()` ones
 
 ```js
 import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
@@ -198,6 +216,15 @@ import '@lcf.vs/dom-engine/lib/worker-client.js'
 ```
 
 #### Into the `ServiceWorker` script
+
+```js
+import { load } from '@lcf.vs/dom-engine/lib/frontend.js'
+
+// loads a file with the same name than the current module,
+// but with a .html extension instead of the current one
+const tpl = await load(import.meta, { ...options } = {}, { ...data } = {})
+```
+Where the options are the `fetch()` ones
 
 ```js
 import { serialize, source } from '@lcf.vs/dom-engine/lib/worker.js'
