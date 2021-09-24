@@ -24,7 +24,7 @@ There is 2 type of markers:
 ### Create a fragment template
 
 ```js
-import { template } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { template } from '@lcf.vs/dom-engine'
 
 const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
   classes: null,
@@ -37,7 +37,7 @@ const pTemplate = template(`<p class="{?classes}">{salutations} {?name}</p>`, {
 ### Create a fragment template, using the `source` symbol
 
 ```js
-import { source } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { source } from '@lcf.vs/dom-engine'
 
 const pTemplate = {
   [source]: '<p class="{?classes}">{salutations} {?name}</p>',
@@ -136,7 +136,7 @@ const pTemplate = {
 ## Serialize a template
 
 ```js
-import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { serialize } from '@lcf.vs/dom-engine'
 
 const p = template(`<p>user-name</p>`)
 const html = await serialize(p)
@@ -145,7 +145,7 @@ const html = await serialize(p)
 ## APIs
 
 ```js
-import { template, source } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { template, source } from '@lcf.vs/dom-engine'
 
 const tpl = template(html, { ...fields } = {})
 
@@ -160,7 +160,7 @@ const tpl = {
 ### Back-End
 
 ```js
-import { load } from '@lcf.vs/dom-engine/lib/backend.js'
+import { load } from '@lcf.vs/dom-engine'
 
 // loads a file with the same name than the current module,
 // but with a .html extension instead of the current one
@@ -169,13 +169,13 @@ const tpl = await load(import.meta, { ...options } = {}, { ...data } = {})
 Where the options are the **async** `readFile()` ones
 
 ```js
-import { serialize } from '@lcf.vs/dom-engine/lib/backend.js'
+import { serialize } from '@lcf.vs/dom-engine'
 
 const htmlString = await serialize(template)
 ```
 Or
 ```js
-import { render } from '@lcf.vs/dom-engine/lib/backend.js'
+import { render } from '@lcf.vs/dom-engine'
 
 const htmlNode = render(template)
 ```
@@ -183,7 +183,7 @@ const htmlNode = render(template)
 ### Front-End
 
 ```js
-import { load } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { load } from '@lcf.vs/dom-engine'
 
 // loads a file with the same name than the current module,
 // but with a .html extension instead of the current one
@@ -192,18 +192,18 @@ const tpl = await load(import.meta, { ...options } = {}, { ...data } = {})
 Where the options are the `fetch()` ones
 
 ```js
-import { serialize } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { serialize } from '@lcf.vs/dom-engine'
 
 const htmlString = await serialize(template)
 ```
 Or
 ```js
-import { render } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { render } from '@lcf.vs/dom-engine'
 
 const htmlNode = render(template)
 ```
 
-### ServiceWorker
+*### ServiceWorker
 
 The engine also supports the rendering of some templates stored into a `ServiceWorker`.
 
@@ -218,16 +218,16 @@ import '@lcf.vs/dom-engine/lib/worker-client.js'
 #### Into the `ServiceWorker` script
 
 ```js
-import { load } from '@lcf.vs/dom-engine/lib/frontend.js'
+import { load } from '@lcf.vs/dom-engine'
 
 // loads a file with the same name than the current module,
 // but with a .html extension instead of the current one
-const tpl = await load(import.meta, { ...options } = {}, { ...data } = {})
+const tpl = await load(import.meta, { ...optio*ns } = {}, { ...data } = {})
 ```
 Where the options are the `fetch()` ones
 
 ```js
-import { serialize, source } from '@lcf.vs/dom-engine/lib/worker.js'
+import { serialize, source } from '@lcf.vs/dom-engine'
 
 const text = 'This page is built by sw-template'
 

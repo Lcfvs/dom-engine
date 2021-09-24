@@ -1,9 +1,11 @@
 {
   "name": "@lcf.vs/dom-engine",
-  "version": "5.4.1",
+  "version": "5.5.0",
   "description": "A composable DOM based template engine",
   "type": "module",
   "exports": {
+    ".": "./lib/index.js",
+    "./lib/index.js": "./lib/index.js",
     "./lib/backend.js": "./lib/backend.js",
     "./lib/frontend.js": "./lib/frontend.js",
     "./lib/worker.js": "./lib/worker.js",
