@@ -1,6 +1,6 @@
 {
   "name": "@lcf.vs/dom-engine",
-  "version": "5.5.2",
+  "version": "5.5.3",
   "description": "A composable DOM based template engine",
   "type": "module",
   "exports": {
