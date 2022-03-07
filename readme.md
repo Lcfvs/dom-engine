@@ -203,7 +203,7 @@ import { render } from '@lcf.vs/dom-engine'
 const htmlNode = render(template)
 ```
 
-*### ServiceWorker
+### ServiceWorker
 
 The engine also supports the rendering of some templates stored into a `ServiceWorker`.
 
