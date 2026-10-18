@@ -1,6 +1,6 @@
 {
   "name": "@lcf.vs/dom-engine",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "description": "A composable DOM based template engine",
   "type": "module",
   "exports": {
@@ -16,7 +16,7 @@
   },
   "author": "lcf.vs <lucie.rouges@gmail.com>",
   "dependencies": {
-    "jsdom": "^30.0.1"
+    "jsdom": "^30.1.3"
   },
   "repository": {
     "type": "git",
